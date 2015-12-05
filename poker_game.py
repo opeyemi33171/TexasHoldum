@@ -6,9 +6,8 @@ cards_dealt = []
 
 
 class Player:
-    def __int__(self, player_number):
-        self.player_number = player_number
-        self.cards_in_hand = []
+    cards_in_hand = []
+    player_number = 0
 
 
 class Card:
@@ -51,50 +50,32 @@ class Card:
         self.number = self.set_number(number_on_card)
 
 
-def creating_player_number():
+def creating_players():
     players_made = []
 
     for i in range(1, int(number_of_player)):
-        players_made.append(Player(i))
+        player = Player
+        player.player_number = i
+        players_made.append(player)
 
     return players_made
 
-card = Card(3, 13)
-print(card.suit)
-print(card.number)
 
-
-
-
-
-
-
-"""
 def deal_hands(players):
-    for i in range(0, 1):
+    for i in range(0, 5):
         for player in players:
-            card_number = str(randint(1, 14))
-            if card_number == "11":
+            card_suit = randint(0, 3)
+            card_number = randint(1, 14)
+            card = Card(card_suit, card_number)
+            player.cards_in_hand.append(card.number + card.suit)
 
-                card_number = "J"
-                player.cards_in_hand.append(card_number)
 
-            elif card_number == "12":
+def print_hands(players):
+    for player in players:
+        print("Player : %s" % player.player_number)
+        for card in player.cards_in_hand:
+            print(card)
 
-                card_number = "Q"
-                player.cards_in_hand.append(card_number)
 
-            elif card_number == "13":
+print_hands(deal_hands(creating_players()))
 
-                card_number = "K"
-                player.cards_in_hand.append(card_number)
-
-            elif card_number == "14":
-
-                card_number = "A"
-                player.cards_in_hand.append(card_number)
-
-            else:
-                player.cards_in_hand.append(card_number)
-
-"""
