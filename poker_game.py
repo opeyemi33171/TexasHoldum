@@ -30,19 +30,20 @@ class Card:
 
     def set_number(self, number_on_card):
         card_number = ""
-        if number_on_card == "11":
+        if number_on_card == 11:
             card_number = "J"
 
-        elif number_on_card == "12":
+        elif number_on_card == 12:
             card_number = "Q"
 
-        elif number_on_card == "13":
+        elif number_on_card == 13:
             card_number = "K"
 
-        elif number_on_card == "14":
+        elif number_on_card == 14:
             card_number = "A"
         else:
             card_number = str(number_on_card)
+
         return card_number
 
     def __init__(self, number_for_suit, number_on_card):
@@ -58,7 +59,7 @@ def creating_player_number():
 
     return players_made
 
-card = Card(0, 14)
+card = Card(3, 13)
 print(card.suit)
 print(card.number)
 
