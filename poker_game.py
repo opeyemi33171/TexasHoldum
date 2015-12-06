@@ -1,18 +1,19 @@
 from random import randint
-import logging
+import math
+
 number_of_player = input("Please a enter a number between 2 and 6 for number of players : ")
 
 cards_dealt = []
 
 
 class Player:
-
     def __init__(self, player_number):
-       self.cards_in_hand = []
-       self.player_number = player_number
+        self.cards_in_hand = []
+        self.player_number = player_number
 
 
 class Card:
+    cards_dealt = []
 
     def set_suit(self, number_for_suit):
         suit = ""
@@ -30,6 +31,7 @@ class Card:
         return suit
 
     def set_number(self, number_on_card):
+        # I don't know what's going on here but i will find out later
         card_number = ""
         if number_on_card == 11:
             card_number = "J"
@@ -55,10 +57,17 @@ class Card:
 def creating_players():
     players_made = []
 
-    for i in range(1, int(number_of_player)+1):
+    for i in range(1, int(number_of_player) + 1):
         players_made.append(Player(i))
 
     return players_made
+
+
+def is_dealt(cards_in_list, target_item):
+    in_list = False
+    if target_item in cards_in_list:
+        in_list = True
+        return in_list
 
 
 def deal_hands(players):
@@ -67,7 +76,13 @@ def deal_hands(players):
             card_suit = randint(0, 3)
             card_number = randint(1, 14)
             card = Card(card_suit, card_number)
+            while is_dealt(cards_dealt, str(card.number)+str(card_suit)):
+                card_suit = randint(0, 3)
+                card_number = randint(1, 14)
+                card = Card(card_suit, card_number)
+                break
             player.cards_in_hand.append(card.number + card.suit)
+            cards_dealt.append(str(card.number)+str(card_suit))
     return players
 
 
@@ -76,9 +91,8 @@ def print_hands(players):
         print()
         print("Player : %s" % player.player_number)
         for card in player.cards_in_hand:
-            print(card+" ", end="")
+            print(card + " ", end="")
         print()
 
 
 print_hands(deal_hands(creating_players()))
-
