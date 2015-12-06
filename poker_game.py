@@ -76,13 +76,13 @@ def deal_hands(players):
             card_suit = randint(0, 3)
             card_number = randint(1, 14)
             card = Card(card_suit, card_number)
-            while is_dealt(cards_dealt, str(card.number)+str(card_suit)):
+            while is_dealt(cards_dealt, str(card.number)+str(card.suit)):
                 card_suit = randint(0, 3)
                 card_number = randint(1, 14)
                 card = Card(card_suit, card_number)
                 break
             player.cards_in_hand.append(card.number + card.suit)
-            cards_dealt.append(str(card.number)+str(card_suit))
+            cards_dealt.append(str(card.number)+str(card.suit))
     return players
 
 
