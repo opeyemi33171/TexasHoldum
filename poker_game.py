@@ -1,6 +1,4 @@
 from random import randint
-import math
-
 number_of_player = input("Please a enter a number between 2 and 6 for number of players : ")
 
 cards_dealt = []
